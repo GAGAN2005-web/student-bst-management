@@ -15,3 +15,177 @@ nav{display:grid;gap:7px}.nav-item{border:0;background:transparent;color:#9ca0aa
 .modal-backdrop{position:fixed;inset:0;background:#0d0f1480;display:none;place-items:center;padding:20px;z-index:20}.modal-backdrop.open{display:grid}.modal{background:white;width:min(430px,100%);border-radius:16px;padding:28px;position:relative;box-shadow:0 20px 70px #0003}.modal h3{margin:5px 0 20px;font-size:22px}.close-btn{position:absolute;right:18px;top:15px;border:0;background:none;font-size:25px;color:var(--muted);cursor:pointer}.modal form{display:grid;gap:14px}.modal label{font-size:11px;font-weight:700}.modal input{display:block;width:100%;margin-top:6px;border:1px solid var(--line);padding:11px;border-radius:8px;outline:none}.modal input:focus{border-color:#999}.full{width:100%;margin-top:4px}.toast{position:fixed;right:25px;bottom:25px;background:#111318;color:white;padding:13px 17px;border-radius:9px;font-size:12px;opacity:0;transform:translateY(10px);transition:.25s;z-index:30}.toast.show{opacity:1;transform:none}.toast.error{background:#b91c1c}
 @media(max-width:900px){.sidebar{width:72px;padding:20px 10px}.brand div:not(.brand-mark),.nav-item span,.sidebar-footer span{display:none}.brand{padding-bottom:30px;justify-content:center}.nav-item{justify-content:center}.main{margin-left:72px;width:calc(100% - 72px);padding:25px}.stats-grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.hero h3{font-size:22px}}
 @media(max-width:560px){.main{padding:18px}.topbar{align-items:flex-start;gap:12px}.topbar h2{font-size:21px}.hero{padding:24px}.hero-badge{display:none}.stats-grid{grid-template-columns:1fr 1fr}.section-tools{flex-direction:column}.search-box{max-width:none}.panel{padding:16px}th,td{padding:11px 7px}.action-btn{padding:5px 6px}}
+/* =========================================
+   SEARCH RESULT
+   ========================================= */
+
+.search-result-container {
+  display: none;
+  margin-bottom: 22px;
+}
+
+.search-result-container.visible {
+  display: block;
+}
+
+.search-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: 1px solid #e6e8ec;
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  animation: searchResultIn 0.25s ease;
+}
+
+@keyframes searchResultIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f3f5;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.success-icon {
+  background: #e9f8ef;
+  color: #16834b;
+}
+
+.result-content {
+  width: 100%;
+}
+
+.result-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.result-top h3 {
+  margin: 3px 0 0;
+  font-size: 22px;
+}
+
+.result-id {
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: #f4f5f7;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.result-details {
+  display: flex;
+  gap: 60px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #eceef1;
+}
+
+.result-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.result-details span {
+  font-size: 12px;
+  color: #858b95;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.result-details strong {
+  font-size: 15px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.error-result {
+  background: #fff7f7;
+  border-color: #ffdede;
+}
+
+.error-result .result-icon {
+  background: #ffe8e8;
+  color: #d73737;
+}
+
+.error-result strong {
+  color: #c92d2d;
+}
+
+.error-result p {
+  margin: 5px 0 0;
+  color: #777;
+}
+
+.loading-result {
+  background: #f8f9fb;
+}
+
+.result-spinner {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 3px solid #e2e5e9;
+  border-top-color: #222;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   MOBILE SEARCH RESULT
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .result-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .result-details {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .result-actions button {
+    width: 100%;
+  }
+}
