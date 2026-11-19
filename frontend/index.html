@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student BST Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">BST</div>
+        <div>
+          <h1>Student<span>BST</span></h1>
+          <p>Record Management</p>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav-item active" data-section="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="nav-item" data-section="students">▤ <span>Students</span></button>
+        <button class="nav-item" data-section="tree">⌘ <span>BST Visualizer</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-dot"></div>
+        <span id="connectionText">Checking API...</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">DATA STRUCTURES PROJECT</p>
+          <h2 id="pageTitle">Student Dashboard</h2>
+        </div>
+        <button class="primary-btn" id="openAddBtn">+ Add Student</button>
+      </header>
+
+      <section id="dashboard" class="section active">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">BINARY SEARCH TREE</p>
+            <h3>Manage student records with a real BST.</h3>
+            <p>Insert, search, update and delete records while visualizing how the data structure changes.</p>
+          </div>
+          <div class="hero-badge">DSA<br><strong>CORE</strong></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><span>Total Students</span><strong id="totalStudents">0</strong><small>Stored in BST</small></div>
+          <div class="stat-card"><span>Average CGPA</span><strong id="avgCgpa">0.00</strong><small>Across all records</small></div>
+          <div class="stat-card"><span>BST Height</span><strong id="treeHeight">0</strong><small>Current tree depth</small></div>
+          <div class="stat-card"><span>Highest CGPA</span><strong id="highestCgpa">0.00</strong><small id="topStudent">No students yet</small></div>
+        </div>
+
+        <div class="content-grid">
+          <div class="panel">
+            <div class="panel-head">
+              <div><p class="eyebrow">RECENT RECORDS</p><h3>Students</h3></div>
+              <button class="text-btn" data-section="students">View all →</button>
+            </div>
+            <div id="recentStudents" class="student-list"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><div><p class="eyebrow">OPERATIONS</p><h3>How it works</h3></div></div>
+            <div class="operation-list">
+              <div><b>01</b><span><strong>Insert</strong> — place a student by ID.</span></div>
+              <div><b>02</b><span><strong>Search</strong> — traverse left/right by ID.</span></div>
+              <div><b>03</b><span><strong>Delete</strong> — handle 0, 1 or 2 children.</span></div>
+              <div><b>04</b><span><strong>Inorder</strong> — display IDs in sorted order.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="students" class="section">
+        <div class="section-tools">
+          <div class="search-box"><span>⌕</span><input id="searchInput" type="number" placeholder="Search by Student ID..."><button id="searchBtn">Search</button></div>
+          <button class="secondary-btn" id="refreshBtn">↻ Refresh</button>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">INORDER TRAVERSAL</p><h3>All Student Records</h3></div><span class="count-pill" id="recordCount">0 records</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Student</th><th>Course</th><th>CGPA</th><th>Actions</th></tr></thead>
+              <tbody id="studentTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="tree" class="section">
+        <div class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">DATA STRUCTURE</p><h3>Binary Search Tree</h3></div>
+            <span class="count-pill">Root → Left / Right</span>
+          </div>
+          <div id="treeCanvas" class="tree-canvas"></div>
+          <div class="legend"><span><i class="legend-dot"></i> Node = Student ID</span><span>Lower IDs → Left</span><span>Higher IDs → Right</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <button class="close-btn" id="closeModal">×</button>
+      <p class="eyebrow" id="modalEyebrow">NEW RECORD</p>
+      <h3 id="modalTitle">Add Student</h3>
+      <form id="studentForm">
+        <input type="hidden" id="editOriginalId">
+        <label>Student ID<input id="studentId" type="number" min="1" required></label>
+        <label>Student Name<input id="studentName" type="text" maxlength="100" required></label>
+        <label>Course<input id="studentCourse" type="text" maxlength="100" required></label>
+        <label>CGPA<input id="studentCgpa" type="number" min="0" max="10" step="0.01" required></label>
+        <button class="primary-btn full" type="submit" id="saveBtn">Add Student</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
