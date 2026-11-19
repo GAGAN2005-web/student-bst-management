@@ -1,6 +1,6 @@
 // Set this to your deployed FastAPI URL before deploying the frontend.
 // Example: "https://your-student-bst-api.onrender.com"
-const API_BASE = localStorage.getItem("bst_api_url") || "http://127.0.0.1:8000";
+const API_BASE = localStorage.getItem("bst_api_url") || "https://student-bst-management.onrender.com";;
 
 const $ = (id) => document.getElementById(id);
 let students = [];
